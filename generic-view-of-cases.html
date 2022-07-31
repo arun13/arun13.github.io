@@ -149,16 +149,34 @@
             const annotations = [
                 {
                     note: {
-                        label: "Here is the annotation label",
-                        title: "Annotation title",
+                        label: "This is the spike related to Omnicron strain",
+                        title: "Omnicron Strain",
                         align:"right"
-                    },
 
-                    x: 500,
+                    },
+                    color: ["black"],
+                    type: d3.annotationCalloutCircle,
+                    x: 650,
                     y: 300,
-                    dy: -70,
-                    dx: -50,
-                    subject: { radius: 50, radiusPadding: 10 },
+                    dy: -90,
+                    dx: -100,
+                    subject: { radius: 50, radiusPadding: 5 },
+                },
+
+                {
+                    note: {
+                        label: "This is the spike related to Delta strain",
+                        title: "Delta Strain",
+                        align:"right"
+
+                    },
+                    color: ["black"],
+                    type: d3.annotationCalloutCircle,
+                    x: 420,
+                    y: 390,
+                    dy: -90,
+                    dx: -100,
+                    subject: { radius: 50, radiusPadding: 5 },
                 }
             ]
 
