@@ -7,5 +7,103 @@
     background-color: #eee;
     border-radius: 5px;
     box-shadow: 1px 1px #ccc;
-    margin-left: 900px;
+    margin-left: 200px;
+}
+
+h1.header-text{
+    font-size:30px;
+    margin-left: 500px;
+
+}
+
+p.p-text{
+    font-size:16px;
+    font-family: "Verdana";
+}
+
+.btn-group button {
+    background-color: #4676d7; /* Green background */
+   /* border: 1px solid #da682b; /* Green border */
+   /* border-style: solid;
+    */border-width: 1px;
+    text-rendering: auto;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 1rem;
+    cursor: pointer;
+    min-width: 100px;
+    max-width: 200px;
+    max-height: 50px;
+    color: #fff; /* White text */
+ /*   padding: 10px 24px;*/ /* Some padding */
+  /*  cursor: pointer; *//* Pointer/hand icon */
+    width: 50%; /* Set a width if needed */
+ /*   display: block; /* Make the buttons appear below each other */
+   /* background-image: linear-gradient(#4676d7 0%, #265ec2 51%, #4676d7 100%);*/
+}
+
+.btn-group button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: #14306b;
+}
+
+.btn-group button:focus {
+    outline: none;
+}
+
+.button {
+    background-color: #4676d7; /* Green background */
+    /* border: 1px solid #da682b; /* Green border */
+    border-style: solid;
+    border-width: 1px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 1rem;
+    cursor: pointer;
+    min-width: 100px;
+    max-width: 200px;
+    max-height: 50px;
+    color: #fff; /* White text */
+    /*   padding: 10px 24px;*/ /* Some padding */
+    /*  cursor: pointer; *//* Pointer/hand icon */
+ /*   width: 50%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+    /* background-image: linear-gradient(#4676d7 0%, #265ec2 51%, #4676d7 100%);*/
+}
+
+.button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.button:hover {
+    background-color: #14306b;
+}
+
+.button:focus {
+    outline: none;
+}
+
+#main {
+    overflow:auto;
+    width: 100%;
+}
+
+#content {
+    overflow:auto;
+    width: 100%;
+}
+#content:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+#chart-container{
+
 }
