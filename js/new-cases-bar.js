@@ -32,9 +32,9 @@ function format_data_new_bar(tobeformatdata) {
 }
 //Init Graph
 
-function initChartNewBar(rawdata,svg) {
+function initChartNewBar(country,svg,data) {
     var counry_data = rawdata.filter(function (d) {
-        return d.location == "India";
+        return d.location === country;
     });
     var formatted_data = format_data_new_bar(counry_data);
     var max = formatted_data.reduce(function (prev, current) {
@@ -167,21 +167,23 @@ function updateChartNewBar(country, rawdata,svg) {
     //   console.log("after ",data);
 }
 
-function newCasesBar(country) {
+function newCasesBar(svg,country) {
 
-    document.getElementById("chart-container").innerHTML = "";
+ //   document.getElementById("chart-container").innerHTML = "";
+/*
     var svg = d3.select("#chart-container")
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+*/
 
 //Read the data
     d3.csv("data/owid-covid-data_test.csv", function (data) {
         // Added dropdown
-        addDropdown(data,svg);
+     //   addDropdown(data,svg);
         /////
-        initChartNewBar(data,svg);
+        initChartNewBar(country,svg,data);
     });
 }

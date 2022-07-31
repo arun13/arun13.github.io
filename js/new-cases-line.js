@@ -1,18 +1,22 @@
 
-function newLineChart(country) {
-    document.getElementById("chart-container").innerHTML = "";
+function newLineChart(svg,country) {
+   /* document.getElementById("chart-container").innerHTML = "";*/
     var parseDate = d3.timeParse("%m/%d/%Y");
 
+/*
     var svg = d3.select("#chart-container")
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+*/
 
     //Read the data
+   /// console.log(country);
     d3.csv("data/owid-covid-data_test.csv", function(data) {
    //     addDropdown(data,svg);
+   //     console.log(data);
         initChartNewLine(country,svg,data);
 
     });
@@ -27,6 +31,7 @@ function format_data_new_line(tobeformatdata)
         d.new_index = +d.new_cases;
         //  console.log(d.location+" "+d.parsed_date+" "+d.sti_index+" "+d.new_cases);
     });
+  //  console.log(tobeformatdata);
     return tobeformatdata;
 }
 function transition(path) {
@@ -43,11 +48,12 @@ function tweenDash() {
 }
 function initChartNewLine(country,svg,rawdata)
 {
+  //  console.log(country);
     var counry_data = rawdata.filter(function(d){
         return d.location === country;
     });
     var formatted_data=format_data_new_line(counry_data);
-
+  //  console.log(formatted_data);
     var max_new_index = formatted_data.reduce(function (prev, current) {
         return (prev.new_index > current.new_index) ? prev : current
     })
@@ -104,6 +110,7 @@ function initChartNewLine(country,svg,rawdata)
 }
 
 function updateChartNewLine(country,rawdata,svg){
+    console.log(svg)
     var counry_data = rawdata.filter(function(d){
         return d.location === country;
     });

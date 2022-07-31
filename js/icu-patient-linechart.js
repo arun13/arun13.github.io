@@ -1,14 +1,16 @@
 
-function icuLineChart(country) {
-    document.getElementById("chart-container").innerHTML = "";
+function icuLineChart(svg, country) {
+  //  document.getElementById("chart-container").innerHTML = "";
     var parseDate = d3.timeParse("%m/%d/%Y");
 
+/*
     var svg = d3.select("#chart-container")
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+*/
 
     //Read the data
     d3.csv("data/owid-covid-data_test.csv", function(data) {

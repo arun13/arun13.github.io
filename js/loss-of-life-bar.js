@@ -167,15 +167,17 @@ function updateChartLossBar(country, rawdata,svg) {
     //   console.log("after ",data);
 }
 
-function lossOfLifeBar(country) {
+function lossOfLifeBar(svg, country) {
 
-    document.getElementById("chart-container").innerHTML = "";
+ //   document.getElementById("chart-container").innerHTML = "";
+/*
     var svg = d3.select("#chart-container")
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+*/
 
 //Read the data
     d3.csv("data/owid-covid-data_test.csv", function (data) {

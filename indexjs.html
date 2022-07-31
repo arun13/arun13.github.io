@@ -27,16 +27,13 @@
 
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
+    var running_svg;
     var parseTime = d3.timeParse("%m/%d/%Y");
     var parseDate = d3.timeParse("%m/%d/%Y");
     // set the dimensions and margins of the graph
     var margin = {top: 10, right: 60, bottom: 30, left: 60},
         width = 950 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
-
-    // append the svg object to the body of the page
-
 
     function load_chart(chart) {
         var select_drop_drown = document.getElementById("dropdown_country").value;
@@ -46,7 +43,19 @@
                genericView("new_cases");
            }
            else {
-               newLineChart(select_drop_drown);
+               document.getElementById("chart-container").innerHTML = "";
+               var svg = d3.select("#chart-container")
+                   .append("svg")
+                   .attr("width", width + margin.left + margin.right)
+                   .attr("height", height + margin.top + margin.bottom)
+                   .append("g")
+                   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        //       document.getElementById("svg_value").value=svg;
+        //       console.log(svg);
+               running_svg=svg
+        //       console.log(Object.values(document.getElementById("svg_value").value));
+           //    console.log(running_svg);
+               newLineChart(svg,select_drop_drown);
            }
         }
         if(chart==="loss-of-life") {
@@ -54,7 +63,15 @@
                 genericView("new_deaths");
             }
             else {
-                lossOfLifeLineChart(select_drop_drown);
+                document.getElementById("chart-container").innerHTML = "";
+                var svg = d3.select("#chart-container")
+                    .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                running_svg=svg
+                lossOfLifeLineChart(svg,select_drop_drown);
             }
         }
         if(chart==="icu-patient") {
@@ -62,7 +79,15 @@
                 genericView("icu_patients");
             }
             else {
-                icuLineChart(select_drop_drown);
+                document.getElementById("chart-container").innerHTML = "";
+                var svg = d3.select("#chart-container")
+                    .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                running_svg=svg
+                icuLineChart(svg,select_drop_drown);
             }
         }
         if(chart==="daily-life-disruption") {
@@ -70,7 +95,15 @@
                 genericView("daily_life_disrupion");
             }
             else {
-                lifeDisruption(select_drop_drown);
+                document.getElementById("chart-container").innerHTML = "";
+                var svg = d3.select("#chart-container")
+                    .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                running_svg=svg
+                lifeDisruption(svg,select_drop_drown);
             }
         }
     }
@@ -85,6 +118,7 @@
    <input type="hidden" name="dropdown_country" id="dropdown_country" value="">
    <input type="hidden" name="chart_type" id="chart_type" value="line">
    <input type="hidden" name="chart_selected" id="chart_selected" value="">
+    <input type="hidden" name="svg_value" id="svg_value" value="">
 <div id="content">
 
     <div style="float: left; width:18%;  padding: 10px;">
@@ -104,7 +138,7 @@
                role="tab">Daily Life Disruption</a>
         </div>
         <div id="country_selection"></div>
-        <script type="text/javascript">addDropdown("","")</script>
+        <script type="text/javascript">addDropdown()</script>
     </div>
     <div id="chart-container" style="float: left; width:64%; padding: 10px;">
 
