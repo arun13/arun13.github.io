@@ -12,8 +12,8 @@ function newLineChart(country) {
 
     //Read the data
     d3.csv("data/owid-covid-data_test.csv", function(data) {
-        addDropdown(data,svg);
-        initChartNewLine(svg,data);
+   //     addDropdown(data,svg);
+        initChartNewLine(country,svg,data);
 
     });
 }
@@ -41,10 +41,10 @@ function tweenDash() {
         i = d3.interpolateString("0," + l, l + "," + l);
     return function(t) { return i(t) };
 }
-function initChartNewLine(svg,rawdata)
+function initChartNewLine(country,svg,rawdata)
 {
     var counry_data = rawdata.filter(function(d){
-        return d.location == "France";
+        return d.location === country;
     });
     var formatted_data=format_data_new_line(counry_data);
 
@@ -105,7 +105,7 @@ function initChartNewLine(svg,rawdata)
 
 function updateChartNewLine(country,rawdata,svg){
     var counry_data = rawdata.filter(function(d){
-        return d.location == country;
+        return d.location === country;
     });
     //     console.log("update ",counry_data);
     var formatted_data=format_data_new_line(counry_data);

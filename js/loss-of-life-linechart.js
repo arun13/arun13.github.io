@@ -12,8 +12,8 @@ function lossOfLifeLineChart(country) {
 
     //Read the data
     d3.csv("data/owid-covid-data_test.csv", function(data) {
-    addDropdown(data,svg);
-    initChartLossLine(svg,data);
+  //  addDropdown(data,svg);
+    initChartLossLine(country,svg,data);
 
     });
 }
@@ -41,10 +41,10 @@ function tweenDash() {
         i = d3.interpolateString("0," + l, l + "," + l);
     return function(t) { return i(t) };
 }
-function initChartLossLine(svg,rawdata)
+function initChartLossLine(country,svg,rawdata)
 {
     var counry_data = rawdata.filter(function(d){
-        return d.location == "France";
+        return d.location === country;
     });
     var formatted_data=format_data_loss_line(counry_data);
 

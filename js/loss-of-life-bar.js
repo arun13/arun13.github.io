@@ -32,7 +32,7 @@ function format_data_loss(tobeformatdata) {
 }
 //Init Graph
 
-function initChartLoss(rawdata,svg) {
+function initChartLossBar(rawdata,svg) {
     var counry_data = rawdata.filter(function (d) {
         return d.location == "India";
     });
@@ -96,7 +96,7 @@ function initChartLoss(rawdata,svg) {
 }
 
 //Function to update the data
-function updateChartLoss(country, rawdata,svg) {
+function updateChartLossBar(country, rawdata,svg) {
     var counry_data = rawdata.filter(function (d) {
         return d.location == country;
     });
@@ -180,8 +180,8 @@ function lossOfLifeBar(country) {
 //Read the data
     d3.csv("data/owid-covid-data_test.csv", function (data) {
         // Added dropdown
-        addDropdown(data,svg);
+    //   addDropdown(data,svg);
         /////
-        initChartLoss(data,svg);
+        initChartLossBar(data,svg);
     });
 }

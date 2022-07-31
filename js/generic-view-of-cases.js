@@ -14,16 +14,16 @@ function genericView(graphtype) {
         // When reading the csv, I must format variables:
         function (d) {
             var format_data;
-            if(graphtype=="new_cases"){
+            if(graphtype==="new_cases"){
                 format_data={date: d3.timeParse("%m/%d/%Y")(d.date), location: d.location, data_values: d.new_cases};
             }
-            if(graphtype=="new_deaths"){
+            if(graphtype==="new_deaths"){
                 format_data={date: d3.timeParse("%m/%d/%Y")(d.date), location: d.location, data_values: d.new_deaths};
             }
-            if(graphtype=="icu_patients"){
+            if(graphtype==="icu_patients"){
                 format_data={date: d3.timeParse("%m/%d/%Y")(d.date), location: d.location, data_values: d.icu_patients};
             }
-            if(graphtype=="daily_life_disrupion"){
+            if(graphtype==="daily_life_disrupion"){
                 format_data={date: d3.timeParse("%m/%d/%Y")(d.date), location: d.location, data_values: d.stringency_index};
             }
             return format_data
