@@ -1,13 +1,22 @@
 .box {
-    width: 280px;
-    height: 30px;
-    border: 1px solid #999;
-    font-size: 18px;
     color: #1c87c9;
     background-color: #eee;
-    border-radius: 5px;
-    box-shadow: 1px 1px #ccc;
-    margin-left: 200px;
+    margin-top: 70px;
+    width: 390px;
+    box-shadow: 2px 2px #ccc;
+    border-style: solid;
+    border-width: 2px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 1rem;
+    cursor: pointer;
+    min-width: 100px;
+    max-width: 200px;
+    max-height: 50px;
+    display: block;
+
 }
 
 h1.header-text{
@@ -105,5 +114,10 @@ p.p-text{
     clear: both;
 }
 #chart-container{
+
+}
+
+#country_selection{
+
 
 }
