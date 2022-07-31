@@ -17,8 +17,8 @@ function addDropdown() {
         .on('change', onchange)
 
 
-    select.append('option')
-            .text("Default");
+/*    select.append('option')
+            .text("Default");*/
     var optionGroup = select
         .selectAll('option')
         .data(countries_data).enter();
@@ -29,8 +29,8 @@ function addDropdown() {
         });
 
         selected.property("selected", function (d) {
-            return false;
-            //return d.key==="India"
+            //return false;
+            return d.key==="India"
         })
 
         selectValue = d3.select('select').property('value');

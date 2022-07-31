@@ -19,12 +19,37 @@
 
 }
 
+.box-view {
+    color: #1c87c9;
+    background-color: #eee;
+    width: 390px;
+    box-shadow: 2px 2px #ccc;
+    border-style: solid;
+    border-width: 2px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 1rem;
+    cursor: pointer;
+    min-width: 100px;
+    max-width: 200px;
+    max-height: 50px;
+    display: block;
+    margin-bottom: 70px;
+
+}
+
 h1.header-text{
     font-size:30px;
     margin-left: 500px;
 
 }
+.text{
+    font-size:16px;
+    font-family: "Verdana";
 
+}
 p.p-text{
     font-size:16px;
     font-family: "Verdana";
