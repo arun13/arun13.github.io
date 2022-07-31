@@ -182,8 +182,28 @@ function icuCasesBar(svg,country) {
 //Read the data
     d3.csv("data/owid-covid-data_test.csv", function (data) {
         // Added dropdown
-        addDropdown(data,svg);
+      //  addDropdown(data,svg);
         /////
+        svg.append("text")
+            .attr("x", width/2)
+            .attr("y", 15)
+            .attr("text-anchor", "middle")
+            .style("font-size", "16px")
+            .style("font-family", "Verdana")
+            .style("font-weight", "bold")
+            .text("ICU Patients");
+
+        svg.append("text")
+            .attr("transform", "translate(" + (width/2) + " ," + (height+30) + ")")
+            .style("text-anchor", "middle")
+            .text("Month Year");
+
+        svg.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("x", -(height/2))
+            .attr("y", -50)
+            .style("text-anchor", "middle")
+            .text("Number of People Admitted to ICU");
         initChartIcuBar(data,svg);
     });
 }

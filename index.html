@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
+<meta charset="utf-8" xmlns="http://www.w3.org/1999/html">
 <head>
   <link rel="stylesheet" href="style/main.css">
 </head>
@@ -9,25 +9,115 @@
 <!-- Load d3-annotation -->
 <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.js"></script>
 
-<script>
-    function load_chart(chart) {
-        if(chart=="cases-per-day") {
-            document.getElementById("chart-container").innerHTML = '<object style="height: 75vh; width:100%;" type="text/html" data="generic-view-of-cases.html" ></object>';
-        }
-        if(chart=="loss-of-life") {
-            document.getElementById("chart-container").innerHTML = '<object style="height: 75vh; width:100%;" type="text/html" data="loss-of-life.html" ></object>';
-        }
-        if(chart=="icu-patient") {
-            document.getElementById("chart-container").innerHTML = '<object style="height: 75vh; width:100%;" type="text/html" data="icu-patient.html" ></object>';
-        }
-        if(chart=="daily-life-disruption") {
-            document.getElementById("chart-container").innerHTML = '<object style="height: 75vh; width:100%;" type="text/html" data="disruption-of-life.html" ></object>';
-        }
-        if(chart=="total-loss-of-life") {
-            document.getElementById("chart-container").innerHTML = '<object style="height: 75vh; width:100%;" type="text/html" data="total-loss-of-life.html" ></object>';
-        }
-        }
+<!--Load project code-->
 
+<script src="js/generic-view-of-cases.js"></script>
+<script src="js/loss-of-life-bar.js"></script>
+<script src="js/common.js"></script>
+<script src="js/disruption-of-life.js"></script>
+<script src="js/loss-of-life-linechart.js"></script>
+<script src="js/icu-patient-linechart.js"></script>
+<script src="js/new-cases-line.js"></script>
+<script src="js/new-cases-bar.js"></script>
+<script src="js/icu-patient-bar.js"></script>
+<!--<script src="js/new-cases-line.js"></script>
+<script src="js/icu-patient-bar.js"></script>
+-->
+<script>
+
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    var running_svg;
+    var parseTime = d3.timeParse("%m/%d/%Y");
+    var parseDate = d3.timeParse("%m/%d/%Y");
+    // set the dimensions and margins of the graph
+    var margin = {top: 10, right: 60, bottom: 30, left: 60},
+        width = 950 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+    function load_chart(chart) {
+        var select_drop_drown = document.getElementById("dropdown_country").value;
+        var view_selection_value = document.getElementById("view_selection").value;
+        document.getElementById("chart_selected").value = chart;
+ //       console.log(view_selection_value);
+        if(chart==="cases-per-day") {
+           if(view_selection_value==="Default"){
+               genericView("new_cases");
+           }
+           else {
+               document.getElementById("chart-container").innerHTML = "";
+               var svg = d3.select("#chart-container")
+                   .append("svg")
+                   .attr("width", width + margin.left + margin.right)
+                   .attr("height", height + margin.top + margin.bottom)
+                   .append("g")
+                   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        //       document.getElementById("svg_value").value=svg;
+        //       console.log(svg);
+               running_svg=svg
+        //       console.log(Object.values(document.getElementById("svg_value").value));
+           //    console.log(running_svg);
+               newLineChart(svg,select_drop_drown);
+           }
+        }
+        if(chart==="loss-of-life") {
+            if(view_selection_value==="Default"){
+                genericView("new_deaths");
+            }
+            else {
+                document.getElementById("chart-container").innerHTML = "";
+                var svg = d3.select("#chart-container")
+                    .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                running_svg=svg
+                lossOfLifeLineChart(svg,select_drop_drown);
+            }
+        }
+        if(chart==="icu-patient") {
+            if(view_selection_value==="Default"){
+                genericView("icu_patients");
+            }
+            else {
+                document.getElementById("chart-container").innerHTML = "";
+                var svg = d3.select("#chart-container")
+                    .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                running_svg=svg
+                icuLineChart(svg,select_drop_drown);
+            }
+        }
+        if(chart==="daily-life-disruption") {
+            if(view_selection_value==="Default"){
+                genericView("daily_life_disrupion");
+            }
+            else {
+                document.getElementById("chart-container").innerHTML = "";
+                var svg = d3.select("#chart-container")
+                    .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                running_svg=svg
+                lifeDisruption(svg,select_drop_drown);
+            }
+        }
+    }
+   function handleClick(viewradio){
+            document.getElementById("view_selection").value = viewradio.value;
+            if(viewradio.value==="country-wise"){
+                addDropdown();
+            }
+            else{
+                document.getElementById("country_selection").innerHTML = "";
+            }
+    }
 </script>
 <body>
 <div id="main">
@@ -35,6 +125,16 @@
   <p class="p-text">The following graph show line chart of total number of cases for different over the years during pandemic.It reflects
   three major covid waves which has left big impact on the health of the families and have left big scars. Testing should be
   very rigrous to control the covid waves</p>
+    <input type="hidden" name="view_selection" id="view_selection" value="Default">
+   <input type="hidden" name="dropdown_country" id="dropdown_country" value="">
+   <input type="hidden" name="chart_type" id="chart_type" value="line">
+   <input type="hidden" name="chart_selected" id="chart_selected" value="">
+    <input type="hidden" name="svg_value" id="svg_value" value="">
+    <label class="text">Please select view from below</label>
+    <div id="view-selection">
+        <input type="radio" name="viewradio" onclick="handleClick(this);" value="Default" checked="checked">Default View Charts</input>
+        <input type="radio" name="viewradio" onclick="handleClick(this);" value="country-wise">Country Specific View Charts</input>
+    </div>
 <div id="content">
 
     <div style="float: left; width:18%;  padding: 10px;">
@@ -43,6 +143,7 @@
       <button>Loss of Life</button>
       <button>ICU Admissions</button>
     </div>-->
+
         <div>
             <a class="button" id="cases-per-day" href="javascript:load_chart('cases-per-day')"
                role="tab">Infection spikes</a>
@@ -52,9 +153,9 @@
                role="tab">ICU Admissions</a>
             <a class="button" id="daily-life-disruption" href="javascript:load_chart('daily-life-disruption')"
                role="tab">Daily Life Disruption</a>
-            <a class="button" id="total-loss-of-life" href="javascript:load_chart('total-loss-of-life')"
-               role="tab">Total Loss of Life over Time</a>
         </div>
+        <div id="country_selection"></div>
+ <!--       <script type="text/javascript">addDropdown()</script>-->
     </div>
     <div id="chart-container" style="float: left; width:64%; padding: 10px;">
 

@@ -15,6 +15,25 @@ function lossOfLifeLineChart(svg,country) {
     //Read the data
     d3.csv("data/owid-covid-data_test.csv", function(data) {
   //  addDropdown(data,svg);
+        svg.append("text")
+            .attr("x", width/2)
+            .attr("y", 15)
+            .attr("text-anchor", "middle")
+            .style("font-size", "16px")
+            .style("font-family", "Verdana")
+            .style("font-weight", "bold")
+            .text("Deceased Patients");
+        svg.append("text")
+            .attr("transform", "translate(" + (width/2) + " ," + (height+30) + ")")
+            .style("text-anchor", "middle")
+            .text("Month Year");
+
+        svg.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("x", -(height/2))
+            .attr("y", -50)
+            .style("text-anchor", "middle")
+            .text("Number of People Lost their lives");
     initChartLossLine(country,svg,data);
 
     });

@@ -16,15 +16,61 @@ function genericView(graphtype) {
             var format_data;
             if(graphtype==="new_cases"){
                 format_data={date: d3.timeParse("%m/%d/%Y")(d.date), location: d.location, data_values: d.new_cases};
+                svg.append("text")
+                    .attr("x", width/2)
+                    .attr("y", 15)
+                    .attr("text-anchor", "middle")
+                    .style("font-size", "16px")
+                    .style("font-family", "Verdana")
+                    .style("font-weight", "bold")
+                    .text("New Infections");
+
             }
             if(graphtype==="new_deaths"){
                 format_data={date: d3.timeParse("%m/%d/%Y")(d.date), location: d.location, data_values: d.new_deaths};
+                svg.append("text")
+                    .attr("x", width/2)
+                    .attr("y", 15)
+                    .attr("text-anchor", "middle")
+                    .style("font-size", "16px")
+                    .style("font-family", "Verdana")
+                    .style("font-weight", "bold")
+                    .text("Deceased Patients");
+
             }
             if(graphtype==="icu_patients"){
                 format_data={date: d3.timeParse("%m/%d/%Y")(d.date), location: d.location, data_values: d.icu_patients};
+                svg.append("text")
+                    .attr("x", width/2)
+                    .attr("y", 15)
+                    .attr("text-anchor", "middle")
+                    .style("font-size", "16px")
+                    .style("font-family", "Verdana")
+                    .style("font-weight", "bold")
+                    .text("ICU Patients");
+
             }
             if(graphtype==="daily_life_disrupion"){
                 format_data={date: d3.timeParse("%m/%d/%Y")(d.date), location: d.location, data_values: d.stringency_index};
+                svg.append("text")
+                    .attr("x", width/2)
+                    .attr("y", 15)
+                    .attr("text-anchor", "middle")
+                    .style("font-size", "16px")
+                    .style("font-family", "Verdana")
+                    .style("font-weight", "bold")
+                    .text("Stringency Index");
+                svg.append("text")
+                    .attr("transform", "translate(" + (width/2) + " ," + (height+30) + ")")
+                    .style("text-anchor", "middle")
+                    .text("Month Year");
+
+                svg.append("text")
+                    .attr("transform", "rotate(-90)")
+                    .attr("x", -(height/2))
+                    .attr("y", -50)
+                    .style("text-anchor", "middle")
+                    .text("Stringency Index Representing Closures of Business,schools etc");
             }
             return format_data
         },

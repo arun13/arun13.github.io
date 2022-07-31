@@ -184,6 +184,25 @@ function lossOfLifeBar(svg, country) {
         // Added dropdown
     //   addDropdown(data,svg);
         /////
+        svg.append("text")
+            .attr("x", width/2)
+            .attr("y", 15)
+            .attr("text-anchor", "middle")
+            .style("font-size", "16px")
+            .style("font-family", "Verdana")
+            .style("font-weight", "bold")
+            .text("Deceased Patients");
+        svg.append("text")
+            .attr("transform", "translate(" + (width/2) + " ," + (height+30) + ")")
+            .style("text-anchor", "middle")
+            .text("Month Year");
+
+        svg.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("x", -(height/2))
+            .attr("y", -50)
+            .style("text-anchor", "middle")
+            .text("Number of People Lost their lives");
         initChartLossBar(data,svg);
     });
 }
