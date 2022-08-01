@@ -124,8 +124,8 @@ function genericView(graphtype) {
             var mousemove = function (d) {
                 tooltip
                     .text(d.key)
-                    .style("left", (d3.mouse(this)[0] + 70) + "px")
-                    .style("top", (d3.mouse(this)[1]) + "px")
+                    .style("left", (d3.mouse(this)[0] + 290) + "px")
+                    .style("top", (d3.mouse(this)[1]+150) + "px")
             }
             var mouseleave = function (d) {
                 tooltip
@@ -171,13 +171,13 @@ function genericView(graphtype) {
                 .attr("class", "legend");
 
             legend.append("circle")
-                .attr("cx", 50)
+                .attr("cx", 776)
                 .attr('cy', (d, i) => i * 30 + 20)
                 .attr("r", 6)
                 .style("fill", d => color(d.key))
 
             legend.append("text")
-                .attr("x", 70)
+                .attr("x", 783)
                 .attr("y", (d, i) => i * 30 + 25)
                 .text(d => d.key)
 
