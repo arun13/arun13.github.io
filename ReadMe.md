@@ -1,8 +1,8 @@
-# Impacts of Covid on Daily Life and Public Health
+# Impacts of Coronavirus on Daily Life and Public Health
 
 ## Introduction
 
-#### This narrative visualization is describing how major covid waves and major virus strains had impacted the human lives over the duration of pandemic.This visualization walks through different charts related to daily death toll world observed,people getting infected, lockdowns and icu admission due to Coronavirus.
+#### This narrative visualization is describing how coronavirus has impacted the human lives over the duration of pandemic.This visualization walks through different charts related to daily death toll world observed,people getting infected, lockdowns and icu admission due to Coronavirus.
 
 ## Narrative Structure 
 
