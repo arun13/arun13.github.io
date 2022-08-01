@@ -16,7 +16,7 @@
 #### 2. Country Specific View Charts.
 #### If first view is selected which is also default selection. Then All the charts will display data for the 10 major countries together.These charts are annotated to provide user valuable informaion related to the impact of coronavirus.
 #### If second view is selected then all the charts will be displayed specfic to a country, which gives user more drill down to the data related to a particular country.
-
+#### In the country specific view User is provided with tool-tip option to provide the specific data on a particular point on the chart of the scene.
 ## Scenes of Visualization
 #### There are four scenes of visualization  which are as follows 
 #### 1. Infection Spikes
@@ -33,3 +33,4 @@
 
 ## Trigger
 #### In Country specific view , User can select the select any country being in country specific view and view of the scenes will be switched to the country selected.
+#### I have added labels on the top of radio button selection and on the top chart buttons to help user select the option. Once user select "Country Specific View" ,an alert will also be popped up to ask use to click the scene button after selecting the country from dropdown. 

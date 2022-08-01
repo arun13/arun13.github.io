@@ -113,7 +113,7 @@
             document.getElementById("view_selection").value = viewradio.value;
             if(viewradio.value==="country-wise"){
                 addDropdown();
-                alert("Now Please click on one of chart buttons");
+                alert("Select Country of Interest from Dropdown and then click on one of the scene buttons");
             }
             else{
                 document.getElementById("country_selection").innerHTML = "";
@@ -122,10 +122,11 @@
 </script>
 <body>
 <div id="main">
-  <h1 class="header-text">Impact of coronavirus on different countries</h1>
+  <h1 class="header-text">Impacts of Covid on Daily Life and Public Health</h1>
   <p class="p-text">The following graph show line chart of total number of cases for different over the years during pandemic.It reflects
-  three major covid waves which has left big impact on the health of the families and have left big scars. Testing should be
-  very rigrous to control the covid waves</p>
+  three major covid waves which has left big impact on the health of the families and have left big emotional scars. </p>
+    <p class="p-text">This Visualization has taken data from our world in data repository https://github.com/owid/covid-19-data/tree/master/public/data.
+        It walks users through different scenes prepared for eight countries from the whole world data to make it more presentable.Data for other countries can be selected and added if needed.</p>
     <input type="hidden" name="view_selection" id="view_selection" value="Default">
    <input type="hidden" name="dropdown_country" id="dropdown_country" value="">
    <input type="hidden" name="chart_type" id="chart_type" value="line">
