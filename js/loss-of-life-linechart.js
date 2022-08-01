@@ -52,7 +52,7 @@ function format_data_loss_line(tobeformatdata)
 }
 function transition(path) {
     path.transition()
-        .duration(7500)
+        .duration(3000)
         .attrTween("stroke-dasharray", tweenDash)
         .on("end", () => { d3.select(this).call(transition); });
 }
