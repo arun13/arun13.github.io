@@ -60,7 +60,7 @@ function genericView(graphtype) {
                     .style("font-family", "Verdana")
                     .style("font-weight", "bold")
                     .text("Stringency Index");
-                svg.append("text")
+/*                svg.append("text")
                     .attr("transform", "translate(" + (width/2) + " ," + (height+30) + ")")
                     .style("text-anchor", "middle")
                     .text("Month Year");
@@ -70,7 +70,7 @@ function genericView(graphtype) {
                     .attr("x", -(height/2))
                     .attr("y", -50)
                     .style("text-anchor", "middle")
-                    .text("Stringency Index Representing Closures of Business,schools etc");
+                    .text("Stringency Index Representing Closures of Business,schools etc");*/
             }
             return format_data
         },
@@ -182,7 +182,7 @@ function genericView(graphtype) {
                 .text(d => d.key)
 
             // Features of the annotation
-            const annotations = [
+            const new_cases_annotations = [
                 {
                     note: {
                         label: "This is the spike related to Omnicron strain",
@@ -210,17 +210,159 @@ function genericView(graphtype) {
                     type: d3.annotationCalloutCircle,
                     x: 420,
                     y: 390,
-                    dy: -90,
+                    dy: -100,
                     dx: -100,
+                    subject: {radius: 50, radiusPadding: 5},
+                }
+                ,
+
+                {
+                    note: {
+                        label: "This is the spike related to Alpha strain",
+                        title: "Alpha Strain",
+                        align: "right"
+
+                    },
+                    color: ["black"],
+                    type: d3.annotationCalloutCircle,
+                    x: 310,
+                    y: 390,
+                    dy: -90,
+                    dx: -150,
                     subject: {radius: 50, radiusPadding: 5},
                 }
             ]
 
+            const new_deaths_annotations = [
+                {
+                    note: {
+                        label: "World Saw Maximum deaths in the beginning of 2021 year",
+                        title: "Maximum Death Toll observed",
+                        align: "right"
+
+                    },
+                    color: ["black"],
+                    type: d3.annotationCalloutCircle,
+                    x: 320,
+                    y: 100,
+                    dy: 70,
+                    dx: -80,
+                    subject: {radius: 80, radiusPadding: 5},
+                }
+            ]
+            const icu_cases_annotations = [
+                {
+                    note: {
+                        label: "In United States 1st wave of ICU patients",
+                        title: "United States 1st Major covid wave",
+                        align: "right"
+
+                    },
+                    color: ["black"],
+                    type: d3.annotationCalloutCircle,
+                    x: 320,
+                    y: 60,
+                    dy: 10,
+                    dx: -80,
+                    subject: {radius: 60, radiusPadding: 5},
+                },
+
+                {
+                    note: {
+                        label: "In United States 2nd wave of ICU patients",
+                        title: "United States 2nd Major covid wave",
+                        align: "right"
+
+                    },
+                    color: ["black"],
+                    type: d3.annotationCalloutCircle,
+                    x: 530,
+                    y: 70,
+                    dy: 70,
+                    dx: -100,
+                    subject: {radius: 50, radiusPadding: 5},
+                },
+
+                {
+                    note: {
+                        label: "In United States 3rd wave of ICU patients",
+                        title: "United States 3rd Major covid wave",
+                        align: "right"
+
+                    },
+                    color: ["black"],
+                    type: d3.annotationCalloutCircle,
+                    x: 650,
+                    y: 70,
+                    dy: 90,
+                    dx: -50,
+                    subject: {radius: 50, radiusPadding: 5},
+                }
+            ]
+
+            const lockdown_annotations = [
+                {
+                    note: {
+                        label: "Business started coming back to normal",
+                        title: "Back to normal",
+                        align: "right"
+
+                    },
+                    color: ["black"],
+                    type: d3.annotationCalloutCircle,
+                    x: 750,
+                    y: 250,
+                    dy: 30,
+                    dx: -100,
+                    subject: {radius: 80, radiusPadding: 5},
+                },
+
+                {
+                    note: {
+                        label: "when every country started shutting down business,schools, airports to contain virus",
+                        title: "Starting of lockdowns",
+                        align: "left"
+
+                    },
+                    color: ["black"],
+                    type: d3.annotationCalloutCircle,
+                    x: 60,
+                    y: 390,
+                    dy: -2,
+                    dx: 130,
+                    subject: {radius: 50, radiusPadding: 5},
+                }
+            ]
             // Add annotation to the chart
-            const makeAnnotations = d3.annotation()
-                .annotations(annotations)
-            generic_svg
-                .append("g")
-                .call(makeAnnotations)
+            if(graphtype==="new_cases") {
+                const makeAnnotations = d3.annotation()
+                    .annotations(new_cases_annotations)
+                generic_svg
+                    .append("g")
+                    .call(makeAnnotations)
+            }
+            if(graphtype==="new_deaths") {
+                const makeAnnotations = d3.annotation()
+                    .annotations(new_deaths_annotations)
+                generic_svg
+                    .append("g")
+                    .call(makeAnnotations)
+            }
+
+            if(graphtype==="icu_patients") {
+                const makeAnnotations = d3.annotation()
+                    .annotations(icu_cases_annotations)
+                generic_svg
+                    .append("g")
+                    .call(makeAnnotations)
+            }
+
+            if(graphtype==="daily_life_disrupion") {
+                const makeAnnotations = d3.annotation()
+                    .annotations(lockdown_annotations)
+                generic_svg
+                    .append("g")
+                    .call(makeAnnotations)
+            }
         })
 }

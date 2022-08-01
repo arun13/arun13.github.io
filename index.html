@@ -113,6 +113,7 @@
             document.getElementById("view_selection").value = viewradio.value;
             if(viewradio.value==="country-wise"){
                 addDropdown();
+                alert("Now Please click on one of chart buttons");
             }
             else{
                 document.getElementById("country_selection").innerHTML = "";
@@ -143,8 +144,10 @@
       <button>Loss of Life</button>
       <button>ICU Admissions</button>
     </div>-->
-
+        <div id="country_selection"></div>
         <div>
+            <h4>Please click the on one of below button to display particular chart</h4>
+            <label style="font-family: Verdana;font-weight: bold;margin-bottom: 10px;text-align: center">Chart Buttons</label>
             <a class="button" id="cases-per-day" href="javascript:load_chart('cases-per-day')"
                role="tab">Infection spikes</a>
             <a class="button" id="loss-of-life" href="javascript:load_chart('loss-of-life')"
@@ -154,7 +157,7 @@
             <a class="button" id="daily-life-disruption" href="javascript:load_chart('daily-life-disruption')"
                role="tab">Daily Life Disruption</a>
         </div>
-        <div id="country_selection"></div>
+
     </div>
     <div id="chart-container" style="float: left; width:64%; padding: 10px;">
 

@@ -1,7 +1,8 @@
 .box {
     color: #1c87c9;
     background-color: #eee;
-    margin-top: 70px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     width: 390px;
     box-shadow: 2px 2px #ccc;
     border-style: solid;
