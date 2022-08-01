@@ -6,7 +6,7 @@
 
 ## Narrative Structure 
 
-#### This Narrative visualization follows "interactive slide show" structure. To display charts in slides manner, I have added buttons in vertical sequence for user to click and display those charts to walk user through visualization and giving opportunity to explore of the impact of coronavirus on the world
+#### This Narrative visualization follows "Interactive Slide Show" structure. To display charts in slides manner, I have added buttons in vertical sequence for user to click and display those charts to walk user through visualization and giving opportunity to explore of the impact of coronavirus on the world
 
 
 ## Visual structure 
