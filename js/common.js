@@ -3,7 +3,7 @@ function addDropdown() {
     //Read the data
     d3.csv("data/owid-covid-data_test.csv", function(dropdowndata) {
 
-    rawdatadropdown=  dropdowndata;
+   // rawdatadropdown=  dropdowndata;
     var countries_data = d3.nest() // nest function allows to group the calculation per level of a factor
         .key(function (d) {
             return d.location;
@@ -30,7 +30,7 @@ function addDropdown() {
 
         selected.property("selected", function (d) {
             //return false;
-            return d.key==="India"
+            return d.key==="France"
         })
 
         selectValue = d3.select('select').property('value');
@@ -39,7 +39,7 @@ function addDropdown() {
     });
     function onchange() {
 
-        d3.csv("data/owid-covid-data_test.csv", function (rawdatadropdown) {
+        d3.csv("data/owid-covid-data_test.csv", function (rawdatadropdownupdate) {
 
             selectValue = d3.select('select').property('value');
             document.getElementById("dropdown_country").value = selectValue;
@@ -60,32 +60,33 @@ function addDropdown() {
             //  updateChartNewBar(selectValue, rawdatadropdown,svg)
             if (chart_selected === "cases-per-day") {
                 if (chart_type === "bar") {
-                    updateChartNewBar(selectValue, rawdatadropdown, running_svg);
+                  //  updateChartNewBar(selectValue, rawdatadropdownupdate, running_svg);
                 }
                 if (chart_type === "line") {
-                    updateChartNewLine(selectValue, rawdatadropdown, running_svg);
+                    updateChartNewLine(selectValue, rawdatadropdownupdate, running_svg);
                 }
             }
 
             if (chart_selected === "loss-of-life") {
                 if (chart_type === "bar") {
-                    updateChartLossBar(selectValue, rawdatadropdown, running_svg);
+                 //   updateChartLossBar(selectValue, rawdatadropdownupdate, running_svg);
                 }
                 if (chart_type === "line") {
-                    updateChartLossLine(selectValue, rawdatadropdown, running_svg);
+                    updateChartLossLine(selectValue, rawdatadropdownupdate, running_svg);
                 }
             }
 
             if (chart_selected === "icu-patient") {
                 if (chart_type === "bar") {
-                    updateChartIcuBar(selectValue, rawdatadropdown, running_svg);
+                //    updateChartIcuBar(selectValue, rawdatadropdownupdate, running_svg);
                 }
                 if (chart_type === "line") {
-                    updateChartICULine(selectValue, rawdatadropdown, running_svg);
+                    console.log(rawdatadropdownupdate);
+                    updateChartICULine(selectValue, rawdatadropdownupdate, running_svg);
                 }
             }
             if (chart_selected === "daily-life-disruption") {
-                updateChartDisruption(selectValue, rawdatadropdown, running_svg);
+                updateChartDisruption(selectValue, rawdatadropdownupdate, running_svg);
             }
         })
     }

@@ -52,7 +52,7 @@ function format_data_icu_line(tobeformatdata)
 }
 function transition(path) {
     path.transition()
-        .duration(3000)
+        .duration(7500)
         .attrTween("stroke-dasharray", tweenDash)
         .on("end", () => { d3.select(this).call(transition); });
 }
@@ -101,9 +101,36 @@ function initChartICULine(country,svg,rawdata)
         //      .attr("stroke",'#ee232c')
         .attr("stroke-width", 1.5)
         .call(yAxis);
+//tootip
+    var tooltip = d3.select("#chart-container")
+        .append("div")
+        .style("position", "absolute")
+        .style("z-index", "10")
+        .style("visibility", "visible");
+//.text("");
+// Three function that change the tooltip when user hover / move / leave a cell
+    var mouseover = function (d) {
+        tooltip
+            .style("opacity", 1)
+    }
+    var mousemove = function (d) {
+        //    console.log(d);
+        var coordinates = d3.mouse(this);
+        // var x = coordinates[0];
+        //var y = coordinates[1];
+        const hoveredData = y.invert(coordinates[1]);
+        // console.log(hoveredDate);
+        tooltip
+            .text(parseInt(hoveredData))
+            .style("left", (d3.mouse(this)[0] + 290) + "px")
+            .style("top", (d3.mouse(this)[1]+150) + "px")
+    }
+    var mouseleave = function (d) {
+        tooltip
+            .style("opacity", 0)
+    }
 
-
-    var path_sti = svg.append("path")
+    var path_icu_line = svg.append("path")
         .datum(formatted_data)
         .attr("fill", "none")
         .attr("stroke", '#0d4277')
@@ -121,11 +148,14 @@ function initChartICULine(country,svg,rawdata)
                 return y(+d.icu_index)
             })
         )
-        .call(transition);
+        .call(transition)
+        .on("mouseover", mouseover)
+        .on("mousemove", mousemove)
+        .on("mouseleave", mouseleave);
 }
 
-function updateChartICULine(country,rawdata,svg){
-    var counry_data = rawdata.filter(function(d){
+function updateChartICULine(country,rawdata_u,svg){
+    var counry_data = rawdata_u.filter(function(d){
         return d.location == country;
     });
     //     console.log("update ",counry_data);
@@ -150,28 +180,27 @@ function updateChartICULine(country,rawdata,svg){
 
     var yAxis = d3.axisLeft()
         .scale(y);
-
-
+   // var svg = d3.select("#chart-container");
+    console.log(formatted_data);
     svg.select("g.x-axis")
         .transition() // <---- Here is the transition
-        .duration(2000) // 2 seconds
+        .duration(4000) // 2 seconds
         .attr("transform", "translate(0," + height + ")")
         .call(xAxis.tickFormat(d3.timeFormat("%b%y")).ticks(17));
 
 
     svg.select("g.y-axis")
         .transition() // <---- Here is the transition
-        .duration(2000) // 2 seconds
+        .duration(4000) // 2 seconds
         .call(yAxis);
 
     var path_icu_index_u = svg.select("path.icu_line")
         .datum(formatted_data)
         .transition() // <---- Here is the transition
-        .duration(2000) // 2 seconds
+        .duration(4000) // 2 seconds
         .attr("fill", "none")
         .attr("stroke", '#0d4277')
         .attr("stroke-width", 1.5)
-        .attr("class", "icu_line")
         .attr("d", d3.line()
             .defined(d => !isNaN(d.icu_index))
             .x(function(d) {

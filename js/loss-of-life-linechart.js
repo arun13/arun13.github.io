@@ -101,9 +101,36 @@ function initChartLossLine(country,svg,rawdata)
         //      .attr("stroke",'#ee232c')
         .attr("stroke-width", 1.5)
         .call(yAxis);
+//tootip
+    var tooltip = d3.select("#chart-container")
+        .append("div")
+        .style("position", "absolute")
+        .style("z-index", "10")
+        .style("visibility", "visible");
+//.text("");
+// Three function that change the tooltip when user hover / move / leave a cell
+    var mouseover = function (d) {
+        tooltip
+            .style("opacity", 1)
+    }
+    var mousemove = function (d) {
+        //    console.log(d);
+        var coordinates = d3.mouse(this);
+        // var x = coordinates[0];
+        //var y = coordinates[1];
+        const hoveredData = y.invert(coordinates[1]);
+        // console.log(hoveredDate);
+        tooltip
+            .text(parseInt(hoveredData))
+            .style("left", (d3.mouse(this)[0] + 290) + "px")
+            .style("top", (d3.mouse(this)[1]+150) + "px")
+    }
+    var mouseleave = function (d) {
+        tooltip
+            .style("opacity", 0)
+    }
 
-
-    var path_sti = svg.append("path")
+    svg.append("path")
         .datum(formatted_data)
         .attr("fill", "none")
         .attr("stroke", '#0d4277')
@@ -121,7 +148,10 @@ function initChartLossLine(country,svg,rawdata)
                 return y(+d.new_deaths_index)
             })
         )
-        .call(transition);
+        .call(transition)
+        .on("mouseover", mouseover)
+        .on("mousemove", mousemove)
+        .on("mouseleave", mouseleave);
 }
 
 function updateChartLossLine(country,rawdata,svg){
@@ -171,7 +201,6 @@ function updateChartLossLine(country,rawdata,svg){
         .attr("fill", "none")
         .attr("stroke", '#0d4277')
         .attr("stroke-width", 1.5)
-        .attr("class", "loss_line")
         .attr("d", d3.line()
             .defined(d => !isNaN(d.new_deaths_index))
             .x(function(d) {
